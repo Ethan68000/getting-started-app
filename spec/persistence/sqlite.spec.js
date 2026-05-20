@@ -14,7 +14,7 @@ beforeEach(() => {
     }
 });
 
-afterEach(() => {
+afterEach(async () => {
     await db.teardown();
 });
 
