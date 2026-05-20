@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-    db.teardown();
+    await db.teardown();
 });
 
 test('it initializes correctly', async () => {
