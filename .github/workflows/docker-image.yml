@@ -29,6 +29,7 @@ jobs:
         context: .
         file: Dockerfile
         push: true
+        plateforms: linux/amd64,linux/arm64
         tags: |
           ghcr.io/${{ env.IMAGE_NAME }}/getting-started:latest
     
