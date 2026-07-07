@@ -1,0 +1,11 @@
+name : Deploy to Azure VM
+
+on:
+  workflow_run:
+    workflows: ["Build & push Docker image to Github Container Registry"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
