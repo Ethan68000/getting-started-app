@@ -1,6 +1,6 @@
 services:
   app:
-    image: getting-started
+    image: ghcr.io/ethan68000/getting-started:latest
     restart: always #unless-stopped
     container_name: app
     build:
