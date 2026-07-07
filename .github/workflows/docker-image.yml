@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: Build & push Docker image to Github Container Registry
+=======
+name: Build & push Docker image to Github Contaier Registry
+>>>>>>> eb9de29de9981cb882bcd4fefc3d127de275105c
 
 on:
   push:
@@ -8,7 +12,10 @@ on:
 
 jobs:
   build:
+<<<<<<< HEAD
     name: Build & push Docker image to Github Container Registry
+=======
+>>>>>>> eb9de29de9981cb882bcd4fefc3d127de275105c
     runs-on: ubuntu-latest
     permissions:
       contents: read
