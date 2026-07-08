@@ -6,6 +6,29 @@ const addItem = require('./routes/addItem');
 const updateItem = require('./routes/updateItem');
 const deleteItem = require('./routes/deleteItem');
 
+
+client.collectDefaultMetrics();
+
+app.use(express.json());
+
+const requestDuration = new client.Histogram({
+    name: 'http_request_duration_seconds',
+    labelNames: ['method', 'route', 'status_code'],
+    buckets: [0.01, 0.05, 0.1, 0.5, 1, 2, 5],
+});
+
+app.use((req, res, next) => {
+    const end = requestDuration.startTimer();
+    res.on('finish', () => {
+        end({ method: req.method, route: req.route.path, status_code: res.statusCode });
+    });
+});
+
+app.get('/metrics', async (req, res) => {
+    res.set('Content-Type', client.register.contentType);
+    res.end(await client.register.metrics());
+});
+
 app.use(express.json());
 app.use(express.static(__dirname + '/static'));
 
@@ -13,6 +36,7 @@ app.get('/items', getItems);
 app.post('/items', addItem);
 app.put('/items/:id', updateItem);
 app.delete('/items/:id', deleteItem);
+
 
 db.init().then(() => {
     app.listen(3000, () => console.log('Listening on port 3000'));
