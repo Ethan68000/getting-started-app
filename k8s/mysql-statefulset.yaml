@@ -29,3 +29,13 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: MYSQL_DATABASE
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-storage
+        namespace: todo-app
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
