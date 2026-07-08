@@ -1,10 +1,10 @@
-apiVersion: apps/V1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
   namespace: todo-app
 spec:
-  servicename: mysql
+  serviceName: mysql
   selector:
     matchLabels:
       app: mysql
